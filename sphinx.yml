@@ -1,0 +1,13 @@
+# From the working directory of the app
+# docker-compose run --rm sphinx <cmd>
+#
+# Examples:
+# docker-compose run --rm sphinx sphinx-quickstart
+# docker-compose run --rm sphinx make html
+version: '2'
+services:
+  sphinx:
+    image: 'ddidier/sphinx-doc'
+    volumes:
+      - '${PWD}:/doc'
+    user: "1000:1000"

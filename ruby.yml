@@ -1,0 +1,24 @@
+# From the working directory of the app
+# Note: Gems will be installed in `./vendor/bundle`
+# docker-compose run --rm ruby <cmd>
+#
+# Examples:
+# docker-compose run --rm ruby bundle install
+# docker-compose run --rm ruby pry -Ilib
+version: '2'
+services:
+  ruby:
+    image: "ruby:latest"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "${PWD}:/usr/src/myapp"
+    working_dir: "/usr/src/myapp"
+    environment:
+      GEM_HOME: "/usr/src/myapp/vendor/bundle"
+      BUNDLE_PATH: "/usr/src/myapp/vendor/bundle"
+      BUNDLE_BIN: "/usr/src/myapp/vendor/bundle/bin"
+      BUNDLE_SILENCE_ROOT_WARNING: "1"
+      BUNDLE_APP_CONFIG: "/usr/src/myapp/vendor/bundle"
+      PATH: "/usr/src/myapp/vendor/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      HOME: "/usr/src/myapp/tmp"
+    user: "1000:1000"

@@ -1,0 +1,15 @@
+# docker-compose run --rm awesim /wine/AweSimConnect.exe "$@"
+version: '2'
+services:
+  awesim:
+    image: "nickjer/wine:devel"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
+      - "${HOME}/.awesim:/wine"
+    environment:
+      WINEPREFIX: "/wine/prefix"
+      WINEARCH: "win32"
+      DISPLAY: "${DISPLAY}"
+      HOME: "/wine"
+    user: "1000:1000"

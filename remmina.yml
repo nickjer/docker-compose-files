@@ -1,0 +1,14 @@
+# docker-compose up remmina
+version: '2'
+services:
+  remmina:
+    image: "jess/remmina"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
+      - "${HOME}/.remmina:/config"
+      - "${HOME}/Downloads:/data"
+    environment:
+      DISPLAY: "${DISPLAY}"
+      HOME: "/config"
+    user: "1000:1000"

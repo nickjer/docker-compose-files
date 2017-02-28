@@ -1,0 +1,15 @@
+# From the working directory of the app
+# docker-compose run --rm node <cmd>
+#
+# Examples:
+# docker-compose run --rm node npm install
+# docker-compose run --rm -p 3000:3000 node node example
+version: '2'
+services:
+  node:
+    image: 'node:latest'
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "${PWD}:/usr/src/myapp"
+    working_dir: "/usr/src/myapp"
+    user: "1000:1000"

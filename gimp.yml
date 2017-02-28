@@ -1,0 +1,13 @@
+# docker-compose up gimp
+version: '2'
+services:
+  gimp:
+    image: "jamesnetherton/gimp"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
+      - "${HOME}/Downloads:/data"
+    environment:
+      DISPLAY: "${DISPLAY}"
+      HOME: "/data"
+    user: "1000:1000"
