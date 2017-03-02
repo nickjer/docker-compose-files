@@ -1,0 +1,14 @@
+version: '2'
+services:
+  deluge:
+    image: 'somatorio/deluge-gtk'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/tmp/.X11-unix:/tmp/.X11-unix:ro'
+      - '${HOME}/.config/deluge/.data:/data/.config/deluge'
+      - '${HOME}/.config/deluge/.python-eggs:/data/.python-eggs'
+      - '${HOME}/.config/deluge/.local/share:/data/.local/share'
+    environment:
+      DISPLAY: '${DISPLAY}'
+      HOME: '/data'
+    user: '1000:1000'

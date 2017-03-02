@@ -1,0 +1,5 @@
+version: '2'
+services:
+  speedtest:
+    image: 'tianon/speedtest'
+    network_mode: 'host'
