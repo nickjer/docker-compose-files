@@ -1,0 +1,27 @@
+# Runs filebot script that converts input/ to output/
+# Note: Need to create directories first
+#   mkdir -p ${HOME}/filebot/input
+#   mkdir -p ${HOME}/filebot/output
+#   mkdir -p ${HOME}/filebot/config
+# I also like to edit the ${HOME}/filebot/config/filebot.sh
+#   - MOVIE_FORMAT="Movies/{n.$QUOTE_FIXER} {' CD'+pi}"
+#   + MOVIE_FORMAT="Movies/{n.$QUOTE_FIXER} ({y})/{n.$QUOTE_FIXER} ({y}) - {vf}"
+#
+#   - filebot -script fn:amc -no-xattr --output /output --log-file /files/amc.log --action copy --conflict auto \
+#   + filebot -script fn:amc -no-xattr --output /output --log-file /files/amc.log --action move --conflict auto \
+# After initial run, you may have to chown/chgrp config files to main user.
+#
+# Example:
+#   docker-compose up filebot
+version: '2'
+services:
+  filebot:
+    image: coppit/filebot
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "${HOME}/filebot/input:/input"
+      - "${HOME}/filebot/output:/output"
+      - "${HOME}/filebot/config:/config"
+    environment:
+      USER_ID: 1000
+      GROUP_ID: 1000
