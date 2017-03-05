@@ -1,0 +1,18 @@
+# docker-compose up -d sickrage
+version: '2'
+services:
+  sickrage:
+    image: binhex/arch-sickrage
+    ports:
+      - "8081:8081"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/media:/media"
+      - "${HOME}/deluge/data:/data"
+      - "${HOME}/.sickrage:/config"
+    environment:
+      PUID: 1000
+      PGID: 1000
+    depends_on:
+      - deluge
+    restart: always
