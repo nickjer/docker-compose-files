@@ -1,0 +1,15 @@
+# dco up -d plex
+version: '2'
+services:
+  plex:
+    image: linuxserver/plex
+    network_mode: "host"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "${HOME}/.plex:/config/Library/Application Support"
+      - "/media:/media:ro"
+    environment:
+      VERSION: "latest"
+      PUID: 1000
+      PGID: 1000
+    restart: always
