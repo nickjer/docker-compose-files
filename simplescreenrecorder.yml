@@ -1,24 +1,21 @@
-# docker-compose up simplescreenrecorder
+# mkdir ${HOME}/ssr
+# docker-compose run --rm ssr
 version: '2'
 services:
-  simplescreenrecorder:
-    image: "nickjer/simplescreenrecorder:devel"
+  ssr:
+    image: "nickjer/docker-ssr"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
       - "/run/user/1000/pulse/native:/pulse/socket:ro"
       - "${HOME}/.config/pulse/cookie:/pulse/cookie:ro"
-      - "${HOME}/.simplescreenrecorder:/home/simplescreenrecorder"
-      - "${HOME}/Videos:/data"
+      - "${HOME}/ssr:/data"
     devices:
       - "/dev/snd:/dev/snd"
     environment:
       DISPLAY: "${DISPLAY}"
-      HOME: "/home/simplescreenrecorder"
       PULSE_SERVER: "/pulse/socket"
       PULSE_COOKIE: "/pulse/cookie"
-    working_dir: "/home/simplescreenrecorder"
     user: "1000:1000"
     pid: "host"
     ipc: "host"
-
