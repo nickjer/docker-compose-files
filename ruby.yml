@@ -5,6 +5,11 @@
 # Examples:
 # docker-compose run --rm ruby bundle install
 # docker-compose run --rm ruby pry -Ilib
+#
+# For better support of signals (i.e., ctrl-C)
+# docker-compose run --rm ruby bash -c "echo pid1 > /dev/null && irb $@"
+# docker-compose run --rm ruby bash -c "echo pid1 > /dev/null && bundle $@"
+# docker-compose run --rm ruby bash -c "echo pid1 > /dev/null && rake $@"
 version: '2'
 services:
   ruby:
